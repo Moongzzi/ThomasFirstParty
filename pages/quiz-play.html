@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>퀴즈 풀기 - 토마스와 친구들</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/quiz.css">
+</head>
+<body>
+    <!-- 배경 프레임 (상하만) -->
+    <div class="frame-container">
+        <img src="../images/resources/MainFrame_Up.png" alt="상단 프레임" class="frame frame-top">
+        <img src="../images/resources/MainFrame_Down.png" alt="하단 프레임" class="frame frame-bottom">
+    </div>
+
+    <!-- 퀴즈 플레이 콘텐츠 -->
+    <div class="quiz-play-content">
+        <!-- 로고 버튼 -->
+        <button class="logo-button" onclick="location.href='../index.html'">
+            <img src="../images/resources/Logo.png" alt="토마스와 친구들 로고">
+        </button>
+
+        <!-- 뒤로가기 + 문제 텍스트 -->
+        <div class="quiz-header-row">
+            <button class="back-button common-box" onclick="location.href='quiz.html'">
+                <span>←</span>
+            </button>
+            <p id="quiz-title" class="quiz-title-text">퀴즈 1. 정답을 맞추시오.</p>
+        </div>
+
+        <!-- 문제 박스 -->
+        <div class="quiz-problem-box common-box">
+            <img id="quiz-image" src="" alt="퀴즈 이미지">
+        </div>
+
+        <!-- 정답 입력 영역 -->
+        <div id="answer-section">
+            <!-- 정답 입력 필드 -->
+            <input type="text" id="answer-input" class="answer-input common-box" placeholder="정답을 입력하세요">
+
+            <!-- 버튼 그룹 -->
+            <div class="button-group">
+                <button class="hint-button hint1-button common-box" onclick="showHint(1)">
+                    <img src="../images/resources/HintIcon.png" alt="힌트">
+                </button>
+                <button class="hint-button hint2-button common-box" onclick="showHint(2)">
+                    <img src="../images/resources/HintIcon.png" alt="힌트">
+                </button>
+                <button class="answer-button common-box" onclick="showAnswerConfirm()">
+                    <span>정답 보기</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- 정답 확인 영역 (기본 숨김) -->
+        <div id="result-section" class="hidden">
+            <!-- 정답 박스 -->
+            <div class="correct-answer-box common-box">
+                <span id="correct-answer-text">정답 : </span>
+            </div>
+
+            <!-- 해설 박스 -->
+            <div class="explanation-box common-box">
+                <h3>< 해설 ></h3>
+                <p id="explanation-text"></p>
+            </div>
+
+            <!-- 시뮬레이션 버튼 (13번 퀴즈만 표시) -->
+            <div id="simulation-button" class="simulation-button common-box hidden" onclick="goToSimulation()">
+                <span>시뮬레이션 돌리기</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 힌트 모달 -->
+    <div id="hintModal" class="modal-overlay hidden">
+        <div class="modal-box">
+            <div class="modal-content">
+                <p id="hint-text" class="modal-text"></p>
+            </div>
+            <button class="modal-button" onclick="closeHintModal()">기웃</button>
+        </div>
+    </div>
+
+    <!-- 정답 확인 모달 -->
+    <div id="answerConfirmModal" class="modal-overlay hidden">
+        <div class="modal-box">
+            <div class="modal-content">
+                <p class="modal-text">정답을 확인하시겠습니까?</p>
+            </div>
+            <div class="modal-buttons">
+                <button class="modal-button modal-button-secondary" onclick="closeAnswerConfirmModal()">취소</button>
+                <button class="modal-button" onclick="showAnswer()">확인</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 정답 표시 모달 -->
+    <div id="answerModal" class="modal-overlay hidden">
+        <div class="modal-box">
+            <div class="modal-content">
+                <p id="answer-text" class="modal-text"></p>
+            </div>
+            <button class="modal-button" onclick="closeAnswerModal()">기웃</button>
+        </div>
+    </div>
+
+    <!-- 오답 모달 -->
+    <div id="wrongModal" class="modal-overlay hidden">
+        <div class="modal-box">
+            <div class="modal-content">
+                <p class="modal-text">땡!</p>
+            </div>
+            <button class="modal-button" onclick="closeWrongModal()">기웃</button>
+        </div>
+    </div>
+
+    <script src="../js/common.js"></script>
+    <script src="../js/quiz.js"></script>
+</body>
+</html>
