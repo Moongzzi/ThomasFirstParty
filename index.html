@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>토마스와 친구들</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <!-- 배경 프레임 -->
+    <div class="frame-container">
+        <img src="images/resources/MainFrame_Up.png" alt="상단 프레임" class="frame frame-top">
+        <img src="images/resources/MainFrame_Down.png" alt="하단 프레임" class="frame frame-bottom">
+        <img src="images/resources/MainFrame_Left.png" alt="좌측 프레임" class="frame frame-left">
+        <img src="images/resources/MainFrame_Right.png" alt="우측 프레임" class="frame frame-right">
+    </div>
+
+    <!-- 메인 콘텐츠 -->
+    <div class="main-content">
+        <!-- 윗행 -->
+        <div class="top-row">
+            <!-- 로고 박스 -->
+            <div class="common-box logo-box" onclick="handleLogoClick()">
+                <img src="images/resources/Logo.png" alt="토마스와 친구들 로고">
+            </div>
+
+            <!-- 퀴즈 박스 -->
+            <div class="common-box quiz-box" onclick="handleQuizClick()">
+                <div class="box-content">
+                    <img src="images/resources/QuizIcon.png" alt="퀴즈 아이콘">
+                    <p class="box-text">퀴즈 풀러가기 →</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 아래행 -->
+        <div class="bottom-row">
+            <!-- 타임캡슐 박스 -->
+            <div class="common-box memory-box" onclick="handleMemoryClick()">
+                <img src="images/resources/MemoryIcon.png" alt="추억 아이콘" class="memory-icon">
+                <div class="memory-text-container">
+                    <p class="memory-title">타임 캡슐 보러가기 →</p>
+                    <p class="memory-subtitle">(사진들을 관리자들에게 공유해주시면 감사하겠습니다.)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 모달 팝업 -->
+    <div id="infoModal" class="modal-overlay hidden">
+        <div class="modal-box">
+            <div class="modal-content">
+                <p class="modal-text">토마스와 친구들 연초파티 기념 사이트입니다.
+1월 한 달간만 오픈 됩니다.</p>
+            </div>
+            <button class="modal-button" onclick="closeModal()">기웃</button>
+        </div>
+    </div>
+
+    <script src="js/common.js"></script>
+    <script>
+        // 모달 열기 함수
+        function openModal() {
+            const modal = document.getElementById('infoModal');
+            modal.classList.remove('hidden');
+            // 애니메이션을 위해 약간의 지연 후 show 클래스 추가
+            setTimeout(() => {
+                modal.classList.add('show');
+            }, 10);
+        }
+
+        // 모달 닫기 함수
+        function closeModal() {
+            const modal = document.getElementById('infoModal');
+            modal.classList.remove('show');
+            // 애니메이션이 끝난 후 hidden 클래스 추가
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        // 모달 배경 클릭 시 닫기
+        document.getElementById('infoModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // ESC 키로 모달 닫기
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const modal = document.getElementById('infoModal');
+                if (!modal.classList.contains('hidden')) {
+                    closeModal();
+                }
+            }
+        });
+
+        // 로고 클릭 이벤트 - 모달 팝업 표시
+        function handleLogoClick() {
+            openModal();
+        }
+
+        // 퀴즈 클릭 이벤트 - quiz.html 페이지로 이동
+        function handleQuizClick() {
+            location.href = 'pages/quiz.html';
+        }
+
+        // 타임캡슐 클릭 이벤트 - gallery.html 페이지로 이동
+        function handleMemoryClick() {
+            location.href = 'pages/gallery.html';
+        }
+    </script>
+</body>
+</html>
