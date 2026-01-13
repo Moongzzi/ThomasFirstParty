@@ -1,0 +1,457 @@
+/* 추억 갤러리 페이지 스타일 */
+
+/* 전체 배경 */
+body {
+    background-color: var(--sky-blue);
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* 이미지 전체보기 모달 */
+.image-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.image-modal.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.modal-content {
+    position: relative;
+    max-width: 90vw;
+    max-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content img {
+    max-width: 100%;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+.modal-close {
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    z-index: 1001;
+}
+
+.modal-close:hover {
+    background-color: white;
+    transform: scale(1.1);
+}
+
+.modal-close svg {
+    width: 24px;
+    height: 24px;
+    color: #333;
+}
+
+/* 모바일에서 닫기 버튼 위치 조정 */
+@media (max-width: 768px) {
+    .modal-close {
+        top: 10px;
+        right: 10px;
+    }
+    
+    .modal-content {
+        max-width: 95vw;
+        max-height: 95vh;
+    }
+}
+
+/* 프레임 영역 */
+.frame-top {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    pointer-events: none;
+}
+
+.frame-top img {
+    width: 100%;
+    display: block;
+}
+
+.frame-bottom {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    pointer-events: none;
+}
+
+.frame-bottom img {
+    width: 100%;
+    display: block;
+}
+
+/* 메인 컨텐츠 영역 */
+.gallery-main {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 120px 40px 100px;
+    position: relative;
+    z-index: 1;
+}
+
+/* 로고 홈버튼 */
+.logo-home-btn {
+    position: absolute;
+    top: 120px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.logo-home-btn img {
+    width: 150px;
+    height: 150px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.logo-home-btn img:hover {
+    transform: scale(1.1);
+}
+
+/* 캐러셀 컨테이너 */
+.carousel-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 200px;
+    margin-bottom: 50px;
+}
+
+/* 캐러셀 박스 공통 */
+.carousel-box {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.6s ease-in-out;
+}
+
+.carousel-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: opacity 0.3s ease, transform 0.6s ease-in-out;
+}
+
+/* 슬라이드 애니메이션 */
+@keyframes slideInFromRight {
+    from {
+        transform: translateX(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInFromLeft {
+    from {
+        transform: translateX(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+/* 애니메이션 클래스 */
+.slide-in-right {
+    animation: slideInFromRight 0.5s cubic-bezier(0.4, 0.0, 0.2, 1) forwards;
+}
+
+.slide-in-left {
+    animation: slideInFromLeft 0.5s cubic-bezier(0.4, 0.0, 0.2, 1) forwards;
+}
+
+.fade-out {
+    animation: fadeOut 0.3s ease-out forwards;
+}
+
+/* 중앙 박스 */
+.center-box {
+    width: 960px;
+    height: 600px;
+    z-index: 3;
+    position: relative;
+}
+
+.center-box img {
+    transition: opacity 0.3s ease-in-out;
+}
+
+.center-box:hover {
+    cursor: pointer;
+}
+
+/* 좌우 박스 */
+.left-box,
+.right-box {
+    width: 960px;
+    height: 600px;
+    z-index: 2;
+}
+
+.left-box img,
+.right-box img {
+    transition: opacity 0.4s ease-in-out;
+}
+
+.left-box:hover,
+.right-box:hover {
+    transform: scale(1.02);
+    transition: transform 0.3s ease;
+}
+
+/* 어두운 그림자 오버레이 */
+.shadow-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 15px;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* 컨트롤 영역 (재생/일시정지 + Dot 페이지네이션) */
+.controls-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+}
+
+/* 재생/일시정지 버튼 */
+.play-pause-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--alaskan-blue);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(111, 170, 210, 0.3);
+}
+
+.play-pause-btn:hover {
+    background-color: var(--deep-blue);
+    transform: scale(1.1);
+    box-shadow: 0 6px 15px rgba(111, 170, 210, 0.5);
+}
+
+.play-pause-btn .icon {
+    width: 24px;
+    height: 24px;
+    color: white;
+}
+
+/* Dot 페이지네이션 */
+.pagination-dots {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.pagination-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: rgba(111, 170, 210, 0.4);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.pagination-dot:hover {
+    background-color: rgba(111, 170, 210, 0.7);
+}
+
+.pagination-dot.active {
+    background-color: var(--alaskan-blue);
+    transform: scale(1.3);
+}
+
+/* 반응형 디자인 */
+
+/* 1024px 이하 (태블릿) */
+@media (max-width: 1024px) {
+    .carousel-container {
+        gap: 30px;
+        margin-top: 180px;
+    }
+
+    .center-box {
+        width: 768px;
+        height: 480px;
+    }
+
+    .left-box,
+    .right-box {
+        width: 768px;
+        height: 480px;
+    }
+
+    .logo-home-btn img {
+        width: 120px;
+        height: 120px;
+    }
+
+    .logo-home-btn {
+        top: 100px;
+    }
+}
+
+/* 768px 이하 */
+@media (max-width: 768px) {
+    .gallery-main {
+        padding: 100px 20px 80px;
+    }
+
+    .carousel-container {
+        gap: 0;
+        margin-top: 150px;
+        margin-bottom: 40px;
+    }
+
+    .center-box {
+        width: 600px;
+        height: 375px;
+    }
+
+    /* 좌우 박스 숨김 */
+    .left-box,
+    .right-box {
+        display: none;
+    }
+
+    .logo-home-btn img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .logo-home-btn {
+        top: 80px;
+    }
+
+    .play-pause-btn {
+        width: 45px;
+        height: 45px;
+    }
+
+    .play-pause-btn .icon {
+        width: 20px;
+        height: 20px;
+    }
+
+    .pagination-dot {
+        width: 10px;
+        height: 10px;
+    }
+}
+
+/* 480px 이하 (모바일) */
+@media (max-width: 480px) {
+    .gallery-main {
+        padding: 80px 15px 60px;
+    }
+
+    .carousel-container {
+        margin-top: 120px;
+        margin-bottom: 30px;
+    }
+
+    .center-box {
+        width: 90vw;
+        height: calc(90vw * 0.625);
+        max-width: 400px;
+        max-height: 250px;
+    }
+
+    .logo-home-btn {
+        top: 70px;
+    }
+
+    .logo-home-btn img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .controls-container {
+        gap: 20px;
+    }
+
+    .play-pause-btn {
+        width: 40px;
+        height: 40px;
+    }
+
+    .play-pause-btn .icon {
+        width: 18px;
+        height: 18px;
+    }
+
+    .pagination-dots {
+        gap: 10px;
+    }
+
+    .pagination-dot {
+        width: 8px;
+        height: 8px;
+    }
+}
