@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>추억 갤러리 - 토마스와 친구들</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/gallery.css">
+</head>
+<body>
+    <!-- 상단 프레임 -->
+    <div class="frame-top">
+        <img src="../Images/resources/MainFrame_Up.png" alt="상단 프레임">
+    </div>
+
+    <!-- 메인 컨텐츠 -->
+    <div class="gallery-main">
+        <!-- 로고 홈버튼 -->
+        <div class="logo-home-btn">
+            <img src="../Images/resources/Logo.png" alt="토마스와 친구들 로고" onclick="goHome()">
+        </div>
+
+        <!-- 캐러셀 컨테이너 -->
+        <div class="carousel-container">
+            <!-- 좌측 박스 (어두운 그림자) -->
+            <div class="carousel-box left-box common-box" onclick="moveToPrev()">
+                <div class="shadow-overlay"></div>
+                <img id="left-image" src="" alt="이전 사진">
+            </div>
+
+            <!-- 중앙 박스 (현재 사진) -->
+            <div class="carousel-box center-box common-box">
+                <img id="center-image" src="" alt="현재 사진">
+            </div>
+
+            <!-- 우측 박스 (어두운 그림자) -->
+            <div class="carousel-box right-box common-box" onclick="moveToNext()">
+                <div class="shadow-overlay"></div>
+                <img id="right-image" src="" alt="다음 사진">
+            </div>
+        </div>
+
+        <!-- 컨트롤 영역 (재생/일시정지 + Dot 페이지네이션) -->
+        <div class="controls-container">
+            <!-- 재생/일시정지 버튼 -->
+            <button id="play-pause-btn" class="play-pause-btn" onclick="toggleAutoPlay()" aria-label="자동 재생 일시정지">
+                <svg id="pause-icon" class="icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/>
+                </svg>
+                <svg id="play-icon" class="icon hidden" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M8 5v14l11-7z"/>
+                </svg>
+            </button>
+
+            <!-- Dot 페이지네이션 -->
+            <div class="pagination-dots" id="pagination-dots">
+                <!-- 동적 생성 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 하단 프레임 -->
+    <div class="frame-bottom">
+        <img src="../Images/resources/MainFrame_Down.png" alt="하단 프레임">
+    </div>
+
+    <!-- 이미지 전체보기 모달 -->
+    <div id="image-modal" class="image-modal hidden" onclick="closeImageModal()">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeImageModal()" aria-label="닫기">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                </svg>
+            </button>
+            <img id="modal-image" src="" alt="전체보기">
+        </div>
+    </div>
+
+    <!-- 스크립트 -->
+    <script src="https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js"></script>
+    <script src="../js/common.js"></script>
+    <script src="../js/gallery.js"></script>
+</body>
+</html>
