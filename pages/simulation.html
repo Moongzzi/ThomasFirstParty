@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>점자 블럭 시뮬레이션 - 토마스와 친구들</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/simulation.css">
+</head>
+<body>
+    <!-- 상단 프레임 -->
+    <div class="frame-top">
+        <img src="../Images/resources/MainFrame_Up.png" alt="상단 프레임">
+    </div>
+
+    <!-- 메인 컨텐츠 -->
+    <div class="simulation-main">
+        <!-- 로고 홈버튼 (중앙 상단) -->
+        <div class="logo-home-btn">
+            <img src="../images/resources/Logo.png" alt="토마스와 친구들 로고" onclick="goHome()">
+        </div>
+
+        <!-- 좌우 영역 -->
+        <div class="content-wrapper">
+            <!-- 좌측: 3D 캔버스 -->
+            <div class="canvas-area common-box">
+                <div id="canvas-container"></div>
+            </div>
+
+            <!-- 우측: 컨트롤 패널 -->
+            <div class="control-area common-box">
+                <h2 class="section-title">문자 입력</h2>
+                <input 
+                    type="text" 
+                    id="text-input" 
+                    class="text-input" 
+                    placeholder="한글을 입력하세요" 
+                    maxlength="10">
+                <button id="generate-btn" class="generate-btn">블럭 생성</button>
+
+                <div class="info-section">
+                    <h3 class="info-title">조작 방법</h3>
+                    <ul class="info-list">
+                        <li>마우스 드래그: 회전</li>
+                        <li>마우스 휠: 확대/축소</li>
+                        <li>우클릭 드래그: 이동</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 하단 프레임 -->
+    <div class="frame-bottom">
+        <img src="../Images/resources/MainFrame_Down.png" alt="하단 프레임">
+    </div>
+
+    <!-- 커스텀 모달 -->
+    <div id="modal-overlay" class="modal-overlay hidden">
+        <div class="modal-box">
+            <p id="modal-message" class="modal-message"></p>
+            <button class="modal-close-btn" onclick="closeModal()">확인</button>
+        </div>
+    </div>
+
+    <!-- 스크립트 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/18.6.4/tween.umd.js"></script>
+    <script src="../js/common.js"></script>
+    <script src="../js/hangul-parser.js"></script>
+    <script src="../js/hangul-braille.js"></script>
+    <script src="../js/simulation.js"></script>
+</body>
+</html>
